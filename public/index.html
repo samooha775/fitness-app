@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Push Forge — Push-Up Fitness Tracker</title>
+  <meta name="theme-color" content="#0b0f1a" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" href="/icons/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <canvas id="confetti-canvas"></canvas>
+
+  <div id="toast-stack" class="toast-stack" aria-live="polite"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-icon">💪</span>
+      <span class="brand-name">Push&nbsp;Forge</span>
+    </div>
+    <div class="topbar-actions">
+      <span id="subscriber-pill" class="pill pill-muted">🔕 Notifications off</span>
+      <button id="settings-btn" class="icon-btn" title="Settings" aria-label="Open settings">⚙️</button>
+    </div>
+  </header>
+
+  <main class="app">
+    <section class="hero card glass">
+      <div class="ring-wrap">
+        <svg class="progress-ring" width="220" height="220" viewBox="0 0 220 220">
+          <circle class="ring-bg" cx="110" cy="110" r="96"></circle>
+          <circle id="ring-fg" class="ring-fg" cx="110" cy="110" r="96"></circle>
+        </svg>
+        <div class="ring-center">
+          <div id="today-count" class="today-count">0</div>
+          <div class="today-label">of <span id="today-target">30</span> today</div>
+        </div>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-value"><span id="streak-count">0</span> <span class="flame">🔥</span></div>
+          <div class="stat-label">day streak</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">Lv <span id="level-num">1</span></div>
+          <div class="stat-label">
+            <div class="xp-bar"><div id="xp-fill" class="xp-fill"></div></div>
+          </div>
+        </div>
+        <div class="stat">
+          <div class="stat-value"><span id="lifetime-total">0</span></div>
+          <div class="stat-label">lifetime reps</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card glass log-card">
+      <h2 class="section-title">Log push-ups</h2>
+      <div class="quick-buttons">
+        <button class="quick-btn" data-amount="1">+1</button>
+        <button class="quick-btn" data-amount="5">+5</button>
+        <button class="quick-btn" data-amount="10">+10</button>
+        <button class="quick-btn" data-amount="25">+25</button>
+      </div>
+      <form id="custom-form" class="custom-form">
+        <input id="custom-amount" type="number" min="1" max="1000" placeholder="Custom amount" inputmode="numeric" />
+        <button type="submit" class="primary-btn">Log</button>
+      </form>
+    </section>
+
+    <section class="card glass">
+      <h2 class="section-title">Last 14 days</h2>
+      <div id="history-chart" class="history-chart"></div>
+    </section>
+
+    <section class="card glass">
+      <h2 class="section-title">Achievements</h2>
+      <div id="achievements-grid" class="achievements-grid"></div>
+    </section>
+
+    <section class="card glass notify-card">
+      <h2 class="section-title">Notifications</h2>
+      <p class="muted">Get a daily reminder to hit your goal, plus an evening nudge if your streak is at risk — even when the app is closed.</p>
+      <div class="notify-actions">
+        <button id="enable-notify-btn" class="primary-btn">🔔 Enable notifications</button>
+        <button id="test-notify-btn" class="ghost-btn">Send test</button>
+      </div>
+      <p id="notify-status" class="muted small"></p>
+    </section>
+  </main>
+
+  <div id="settings-overlay" class="overlay hidden">
+    <div class="modal card glass">
+      <div class="modal-header">
+        <h2>Settings</h2>
+        <button id="close-settings-btn" class="icon-btn" aria-label="Close settings">✕</button>
+      </div>
+      <form id="settings-form" class="settings-form">
+        <label>
+          Daily target (reps)
+          <input id="setting-target" type="number" min="1" max="1000" />
+        </label>
+        <label>
+          Morning reminder time
+          <input id="setting-morning" type="time" />
+        </label>
+        <label>
+          Evening streak check-in
+          <input id="setting-evening" type="time" />
+        </label>
+        <button type="submit" class="primary-btn">Save settings</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

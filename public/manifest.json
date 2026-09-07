@@ -1,0 +1,13 @@
+{
+  "name": "Push Forge — Push-Up Fitness Tracker",
+  "short_name": "Push Forge",
+  "description": "A gamified push-up tracker with streaks, XP, levels, achievements and daily push notifications.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b0f1a",
+  "theme_color": "#0b0f1a",
+  "icons": [
+    { "src": "/icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}

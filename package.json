@@ -1,0 +1,21 @@
+{
+  "name": "pushup-fitness-app",
+  "version": "1.0.0",
+  "description": "A gamified push-up tracker with real web push notifications, streaks, XP, levels and achievements.",
+  "main": "server/index.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node server/index.js",
+    "generate-vapid-keys": "node scripts/generate-vapid-keys.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "node-cron": "^4.6.0",
+    "web-push": "^3.6.7"
+  }
+}
