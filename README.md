@@ -21,7 +21,42 @@ streaks, XP levels, achievements, confetti, and a 14-day history chart.
 - **Installable PWA** — "Add to Home Screen" for an app-like experience.
 - Single-file JSON storage — no database to set up.
 
-## Getting started
+## Deploy it so you can install it on your phone
+
+Push notifications require a real HTTPS URL (localhost only works on the
+machine running it), so to use this on your phone you need to host it
+somewhere. The repo includes a `render.yaml` for a one-click deploy on
+[Render](https://render.com) (free tier works fine):
+
+1. Go to https://dashboard.render.com/blueprints and click **New Blueprint
+   Instance**, then pick this repo (`render.yaml` is auto-detected).
+2. Render will ask for three environment variables — generate them first by
+   running `npm run generate-vapid-keys` locally (or see below) and paste in
+   `VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`, and `VAPID_SUBJECT`
+   (e.g. `mailto:you@example.com`).
+3. Click **Apply**. Render builds and starts the app and gives you a URL like
+   `https://push-forge.onrender.com`.
+4. Open that URL on your phone → **Add to Home Screen** (see below) → tap
+   **Enable notifications**.
+
+> Note: Render's free plan uses an ephemeral filesystem, so `data/db.json`
+> (your logs/streak/XP) resets on redeploys or after the free instance spins
+> down from inactivity. For persistent data, add a small [Render
+> Disk](https://render.com/docs/disks) mounted at `/opt/render/project/src/data`,
+> or swap `server/db.js` for a real database later.
+
+Railway, Fly.io, or any other Node host work the same way — just set the same
+three env vars and run `npm start`.
+
+### Installing on your phone once it's deployed
+
+- **Android (Chrome):** open the URL → menu (⋮) → **Add to Home screen /
+  Install app**.
+- **iPhone (Safari):** open the URL → Share icon → **Add to Home Screen**.
+  Push notifications on iOS only work when launched from this home-screen
+  icon (not from a normal Safari tab), and require iOS 16.4+.
+
+## Getting started (local development)
 
 ```bash
 npm install
