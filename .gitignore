@@ -3,5 +3,3 @@ data/db.json
 .env
 *.log
 .DS_Store
-asx-news-bot/seen.json
-__pycache__/
